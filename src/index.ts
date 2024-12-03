@@ -19,7 +19,6 @@ async function run(year: string, day: number) {
 }
 
 async function main() {
-  program.option("--cli", "Boolean Value if you want to run CI Mode");
   program.option("-y, --year <year>", "Year of the challenge");
   program.option("-d, --day <day>", "Day of the challenge (1-25)");
 
@@ -27,37 +26,36 @@ async function main() {
 
   const options = program.opts();
 
-  if (options.cli) {
-    await run(options.year, Number(options.day) - 1);
-    return;
-  }
-
   intro("Advent of Code By @SparshKaushik");
 
-  const yearSelect = await select({
-    message: "Select Year",
-    options: Object.keys(codes).map((year) => ({
-      value: year,
-      label: year,
-    })),
-  });
+  const yearSelect =
+    options.year ||
+    (await select({
+      message: "Select Year",
+      options: Object.keys(codes).map((year) => ({
+        value: year,
+        label: year,
+      })),
+    }));
   cancelHandler(isCancel(yearSelect));
   const year = yearSelect.toString();
 
-  const daySelect = await select({
-    message: "Select Day",
-    options: codes[year as keyof typeof codes].map((_, i) => ({
-      value: i,
-      label: (i + 1).toString(),
-    })),
-  });
+  const daySelect =
+    options.day ||
+    (await select({
+      message: "Select Day",
+      options: codes[year as keyof typeof codes].map((_, i) => ({
+        value: i,
+        label: (i + 1).toString(),
+      })),
+    }));
   cancelHandler(isCancel(daySelect));
 
   const day = Number(daySelect);
 
-  outro("Running Day " + (day + 1) + " of " + year.toString());
+  outro("Running Day " + day + " of " + year.toString());
 
-  await run(year.toString(), day);
+  await run(year.toString(), day - 1);
 }
 
 main();
