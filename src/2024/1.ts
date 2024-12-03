@@ -2,7 +2,7 @@ export default async function One() {
   const input = await Bun.file("./src/2024/inputs/1.txt").text();
   const list = input
     .split("\n")
-    .filter((line) => line.trim().length > 0)
+    .filter(Boolean)
     .reduce<number[][]>(
       (acc, line) => {
         const [a, b] = line
