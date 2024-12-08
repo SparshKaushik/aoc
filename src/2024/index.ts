@@ -4,7 +4,8 @@ import Three from "./3.ts";
 import Four from "./4.ts";
 import Five from "./5.ts";
 import Six from "./6.ts";
+import Seven from "./7.ts";
 
-const Days = [One, Two, Three, Four, Five, Six];
+const Days = [One, Two, Three, Four, Five, Six, Seven];
 
 export default Days;
