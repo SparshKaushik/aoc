@@ -6,7 +6,8 @@ import Five from "./5.ts";
 import Six from "./6.ts";
 import Seven from "./7.ts";
 import Eight from "./8.ts";
+import Nine from "./9.ts";
 
-const Days = [One, Two, Three, Four, Five, Six, Seven, Eight];
+const Days = [One, Two, Three, Four, Five, Six, Seven, Eight, Nine];
 
 export default Days;
